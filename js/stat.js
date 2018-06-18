@@ -46,12 +46,8 @@ window.renderStatistics = function (ctx, names, times) {
   var maxTime = getMaxElement(times);
   for (var i = 0; i < names.length; i++) {
     renderText(ctx, names[i], CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i, PLAYER_NAME_Y);
-    var columnColor;
-    if (names[i] === 'Вы') {
-      columnColor = 'rgba(255, 0, 0, 1)';
-    } else {
-      columnColor = 'rgba(0, 0, 255, ' + getRandom(0.3, 1) + ')';
-    }
+    var columnColor = names[i] === 'Вы' ? 'rgba(255, 0, 0, 1)' : 'rgba(0, 0, 255, ' + getRandom(0.3, 1) + ')';
+
     ctx.fillStyle = columnColor;
     ctx.fillRect(CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i, PLAYER_NAME_Y - GAP, COLUMN_WIDTH, -(BAR_HEIGHT * times[i]) / maxTime + GAP);
     renderText(ctx, Math.round(times[i]), CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i, PLAYER_NAME_Y - GAP - (BAR_HEIGHT * times[i]) / maxTime - GAP / 2);
